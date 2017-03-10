@@ -6708,6 +6708,17 @@ MediumEditor.extensions = {};
             event.preventDefault();
             MediumEditor.selection.moveCursor(this.options.ownerDocument, node.nextSibling);
             node.parentElement.removeChild(node);
+        } else if (MediumEditor.util.isKey(event, MediumEditor.util.keyCode.BACKSPACE) &&
+                MediumEditor.util.isMediumEditorElement(node.parentElement) &&
+                node.previousElementSibling &&
+                (
+                    node.previousElementSibling.classList.contains('medium-insert-images') ||
+                    node.previousElementSibling.classList.contains('medium-insert-embeds')
+                ) &&
+                isEmpty.test(node.innerHTML)) {
+            event.preventDefault();
+            MediumEditor.selection.moveCursor(this.options.ownerDocument, node.previousElementSibling);
+            node.parentElement.removeChild(node);
         }
     }
 
