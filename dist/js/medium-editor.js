@@ -7829,6 +7829,7 @@ MediumEditor.extensions = {};
         }
         return null;
     };
+
 }());
 
 (function () {
